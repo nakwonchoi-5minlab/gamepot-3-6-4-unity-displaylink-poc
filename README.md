@@ -8,6 +8,8 @@ Unity 6000.3.1f1에서 iOS 앱이 background/foreground로 전환될 때 Display
 
 ### 증상
 
+https://github.com/user-attachments/assets/2c289dd0-6738-4205-b7c7-8de4905738fb
+
 iOS 앱을 background로 보냈다가 foreground로 돌아오면 Unity 스레드만 어떠한 동작도 하지 않는 상태가 된다. 게임 로직, 프레임 갱신, 입력 처리가 모두 중단되어 앱을 정상적으로 사용할 수 없다.
 
 디버거에서 pause를 걸고, LLDB에서 아래 명령을 실행한 뒤 resume 하면 즉시 `Update`와 터치가 다시 동작한다.
