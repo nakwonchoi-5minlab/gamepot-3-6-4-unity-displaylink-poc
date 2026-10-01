@@ -245,7 +245,7 @@
 #if __has_include(<GamePotAd/GamePotAd.h>)
     [[GamePotAd getInstance] tracking:RESUME];
 #endif
-    //[super applicationWillEnterForeground:application];
+    [super applicationWillEnterForeground:application];
 }
 
 
