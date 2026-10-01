@@ -4,7 +4,10 @@
 
 Unity 6000.3.1f1에서 iOS 앱이 background/foreground로 전환될 때 DisplayLink를 pause/unpause하는 기능이 추가되었다. 이 변경 이후 background에서 foreground로 복귀할 때 Unity 스레드가 재개되지 않는 현상을 검증하기 위한 POC다.
 
-관련 Unity 릴리스 노트: [Unity 6000.3.1f1](https://unity.com/kr/releases/editor/whats-new/6000.3.1f1#notes)
+관련 Unity 릴리스 노트: 
+> iOS: Added support to pause and unpause DisplayLink when the application moved to the background or foreground.
+
+[Unity 6000.3.1f1](https://unity.com/kr/releases/editor/whats-new/6000.3.1f1#notes)
 
 ### 증상
 
