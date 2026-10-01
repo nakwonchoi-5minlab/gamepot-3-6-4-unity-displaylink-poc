@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="io.gamepot.app"
+    android:versionName="1.0"
+    android:versionCode="1"
+    android:installLocation="preferExternal">
+
+    <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
+  <!-- targetSdkVersion 30 이상일때 원스토어 관련 패치 [Start] -->
+  <queries>
+    <intent>
+      <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.VIEW" />
+      <data android:scheme="onestore" />
+    </intent>
+  </queries>
+  <!-- targetSdkVersion 30 이상일때 원스토어 관련 패치 [End] -->
+    <application android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:name="androidx.multidex.MultiDexApplication"
+        android:allowBackup="false"
+        tools:replace="android:allowBackup,android:name"
+        >
+        <activity android:theme="@style/UnityThemeSelector"
+            android:name="io.gamepot.unity.plugin.GamePotSDKActivity"
+            android:launchMode="singleTask"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection"
+            android:resizeableActivity="false"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="true" />
+            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+
+        </activity>
+
+        <service
+            android:exported="false"
+            android:name="io.gamepot.common.GamePotFCMIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:exported="false"
+            android:name="io.gamepot.common.GamePotFCMService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        
+        <!-- ELSA 서비스를 사용하지 않는 다면 하기 문구는 삭제 / gamepot-logger.aar가 빌드시 포함 안되게 진행 [start]-->
+        <receiver
+            android:exported="false"
+            android:name="com.navercorp.nelo2.android.util.NetworkStatusReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
+        <!-- ELSA 서비스를 사용하지 않는 다면 하기 문구는 삭제 / gamepot-logger.aar가 빌드시 포함 안되게 진행 [end]-->
+
+        <!--갤럭시 S8과 같은 스크린 대응-->
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
+    </application>
+    <uses-feature android:name="android.hardware.vulkan" android:required="false" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+    <uses-feature android:name="android.hardware.touchscreen.multitouch.distinct" android:required="false" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+
+</manifest>

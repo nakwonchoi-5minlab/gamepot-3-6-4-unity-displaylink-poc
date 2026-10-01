@@ -1,0 +1,64 @@
+/*
+ Localizable.strings
+ GamePotSample
+ 
+ Created by Lee Chungwon on 19/02/2019.
+ Copyright © 2019 itsB. All rights reserved.
+ */
+"common_not_init" = "Tidak dimulakan.";
+"charge_no_item" = "Gagal mencari item yang anda bayar.";
+"charge_not_pay" = "Pembayaran tidak tersedia";
+"charge_check_setting" = "Sila cuba lagi selepas memeriksa menu tetapan.";
+"charge_recharge" = "Pembayaran telah diminta lagi disebabkan oleh pembayaran yang diproses secara tidak normal.";
+"charge_ok" = "Sahkan";
+"charge_user_cancel" = "Dibatalkan";
+"charge_remain_error" = "Ralat pembayaran telah berlaku.";
+"channel_not_link" = "Saluran ini dinyahpautkan.";
+"channel_guest_unlink" = "Ini tidak boleh dinyahpautkan oleh Tetamu.";
+"update_new_version" = "Versi terkini (%@) wujud.\nSila kemas kini perisian tersebut dalam gedung.";
+"status_exit" = "Tamat";
+"status_more" = "Lihat lagi";
+"status_next" = "Lakukan ini lain kali";
+"status_go_store" = "Pergi ke gedung";
+"agree_all_agree" = "Bersetuju dengan semua";
+"agree_terms" = "Terma dan Syarat (termasuk bersetuju untuk menerima iklan)";
+"agree_terms_1" = "Terma dan Syarat";
+"agree_privacy" = "Dasar Privasi";
+"agree_push" = "Pilihan) Bersetuju untuk menerima iklan";
+"agree_night" = "Pilihan) Bersetuju untuk menerima makluman atau mesej iklan pada waktu malam";
+"agree_show" = "Lihat";
+"agree_accept_terms" = "Bersetuju";
+"agree_game_start" = "Mulakan permainan";
+"webview_first_page" = "Ini ialah halaman pertama.";
+"webview_today" = "Jangan tunjukkan selama 24 jam";
+"webview_close" = "Tutup";
+"appleid_version_error" = "Log masuk dengan Apple ID disokong oleh IOS 13 atau lebih tinggi sahaja.";
+"login_google" = "Log masuk dengan Google";
+"login_facebook" = "Log masuk dengan Facebook";
+"login_naver" = "Log masuk dengan Naver";
+"login_apple" = "Log masuk dengan Apple";
+"login_twitter" = "Log masuk dengan Twitter";
+"login_line" = "Log masuk dengan LINE";
+"login_guest" = "Log masuk tetamu";
+"login_gamecenter" = "Log masuk dengan Game Center";
+"login_select" = "Sila pilih kaedah log masuk.";
+"voided_purchase_title" = "Sekatan log masuk sementara";
+"voided_purchase_desc" = "Akaun ini telah disekat daripada permainan disebabkan oleh <span style=color:red;>pembatalan pembayaran melalui pasaran terbuka</span>.<br/><br/>Jika pembatalan pembayaran tersebut merupakan satu kesilapan, sekatan sementara boleh ditarik balik dengan membayar semula item yang dibatalkan itu.<br/><br/>Sila hubungi khidmat pelanggan untuk mendapatkan butiran lanjut.";
+"voided_purchase_list_title" = "Baki senarai pembayaran yang dibatalkan";
+"voided_purchase_footer_cs" = "Pergi ke khidmat pelanggan";
+"agree_age_title" = "Keizinan untuk golongan bawah umur";
+"agree_age_msg" = "Pengguna bawah umur 16 tahun mestilah mendapatkan keizinan daripada ibu bapa atau penjaga yang sah bagi memproses maklumat peribadi untuk bermain permainan.\nSila masukkan alamat e-mel ibu bapa atau penjaga anda pada halaman seterusnya.";
+"agree_age_over_msg" = "16 tahun ke atas";
+"agree_age_under_msg" = "Bawah umur 16 tahun";
+"agree_email_title" = "Dipersetujui oleh ibu bapa/penjaga";
+"agree_email_send" = "Hantar e-mel";
+"agree_email_confirm" = "Kelulusan disahkan";
+"agree_email_back" = "Batal";
+"agree_email_description" = "Sila masukkan alamat e-mel ibu bapa atau penjaga yang sah.";
+"agree_email_subdescription" = "ㆍ Pastikan ibu bapa/penjaga mengklik butang Bersetuju untuk memberikan maklumat peribadi.\nㆍ Permintaan adalah sah selama 24 jam sahaja.";
+"agree_email_placeholder" = "Sila masukkan alamat e-mel.";
+"agree_email_format_validate_error" = "Alamat e-mel tidak sah.";
+"agree_email_send_success" = "E-mel telah dihantar. Sila teruskan dengan pengesahan.";
+"agree_email_send_fail" = "Gagal untuk menghantar e-mel.";
+"agree_email_validate_fail" = "Pengesahan e-mel telah gagal. Sila hantar e-mel sekali lagi.";
+"agree_email_auth_fail" = "Sila teruskan dengan pengesahan melalui e-mel yang diterima.";

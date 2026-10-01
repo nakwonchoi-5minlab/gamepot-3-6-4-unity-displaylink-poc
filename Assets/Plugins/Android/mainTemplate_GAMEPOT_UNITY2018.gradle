@@ -1,0 +1,144 @@
+buildscript {
+	repositories {
+		// ### From Unity 2018.x gradle does not supports GradleVersion.current() function
+		// if (GradleVersion.current() >= GradleVersion.version("4.2")) {
+            google()
+            jcenter()
+        // } else {
+        //     jcenter()
+        // }
+    }
+    dependencies {
+		// if (GradleVersion.current() < GradleVersion.version("4.0")) {
+        //     classpath 'com.android.tools.build:gradle:2.1.0'
+        // } else if (GradleVersion.current() < GradleVersion.version("4.2")) {
+        //     classpath 'com.android.tools.build:gradle:2.3.0'
+        // } else {
+            classpath 'com.android.tools.build:gradle:3.4.3'
+        // }
+		classpath 'com.google.gms:google-services:3.2.0'
+	}
+}
+
+allprojects {
+   repositories {
+		flatDir {
+			dirs 'libs'
+		}
+
+		// if (GradleVersion.current() >= GradleVersion.version("4.2")) {
+            google()
+            jcenter()
+        // } else {
+        //     jcenter()
+        // }
+   }
+}
+
+([rootProject] + (rootProject.subprojects as List)).each {
+ext {
+it.setProperty("android.useAndroidX", true)
+it.setProperty("android.enableJetifier", true)
+}
+}
+apply plugin: 'com.android.application'
+
+dependencies {
+	// if (GradleVersion.current() >= GradleVersion.version("4.2")) {
+		implementation fileTree(include: ['*.jar'], dir: 'libs')
+		//implementation project('GamePotResources.androidlib')
+		implementation project('FirebaseApp.androidlib')
+	// } else {
+	// 	compile fileTree(include: ['*.jar'], dir: 'libs')
+	// 	compile project(":GamePotResources")
+	// 	compile project(':Firebase')
+	// }
+}
+
+fileTree(dir: 'libs', include: ['*.aar'])
+        .each { File file ->
+    //  println file.name
+	// if (GradleVersion.current() >= GradleVersion.version("4.2")) {
+		dependencies.add("implementation", [name: file.name.lastIndexOf('.').with { it != -1 ? file.name[0..<it] : file.name }, ext: 'aar'])
+	// } else {
+    // 	dependencies.add("compile", [name: file.name.lastIndexOf('.').with { it != -1 ? file.name[0..<it] : file.name }, ext: 'aar'])
+	// }
+}
+
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+	compileSdkVersion **APIVERSION**
+	buildToolsVersion '**BUILDTOOLS**'
+
+	dexOptions {
+		javaMaxHeapSize "4g"
+	}
+
+	packagingOptions {
+		exclude 'META-INF/maven/com.nhncorp.nelo2.android/nelo2-android-sdk/pom.properties'
+		exclude 'META-INF/maven/com.nhncorp.nelo2.android/nelo2-android-sdk/pom.xml'
+		        exclude 'META-INF/proguard/androidx-annotations.pro'
+	}
+
+	defaultConfig {
+		minSdkVersion **MINSDKVERSION**
+		targetSdkVersion **TARGETSDKVERSION**
+		multiDexEnabled true
+
+		applicationId '**APPLICATIONID**'
+        versionCode **VERSIONCODE**
+        versionName '**VERSIONNAME**'
+
+		ndk {
+            abiFilters **ABIFILTERS**
+        }
+
+		resValue "string", "gamepot_project_id", "" 									   // required
+ 		resValue "string", "gamepot_api_url", "" 										   	 // required (공백값으로 유지해주세요.)
+   		resValue "string", "gamepot_dash_url", "" 										   // required (공백값으로 유지해주세요.)
+   		resValue "string", "gamepot_store", "google" 									 // required
+   		resValue "string", "gamepot_app_title","@string/app_name" 			  // required (fcm)
+   		resValue "string", "gamepot_push_default_channel","Default" 	 	  // required (fcm)
+   		resValue "string", "facebook_app_id", "" 								 			 // optional (facebook)
+        resValue "string", "fb_login_protocol_scheme", "fb"               // optional (facebook)
+        resValue "string", "facebook_client_token", "" // 페이스북 콘솔 > 앱 >  설정 > 고급 설정 > 클라이언트 토큰 optional (facebook)
+    	// resValue "string", "gamepot_naver_clientid", ""  							 	// optional (Naver 개발자 콘솔에서 획득)
+    	// resValue "string", "gamepot_naver_secretid", ""  								// optional (Naver 개발자 콘솔에서 획득)
+    	// resValue "string", "gamepot_line_channelid",""								 		// optional (Line 개발자 콘솔에서 획득)
+    	// resValue "string", "gamepot_twitter_consumerkey", ""					  	// optional (Twitter 개발자 콘솔에서 획득)
+    	// resValue "string", "gamepot_twitter_consumersecret", "" 				 	// optional (Twitter 개발자 콘솔에서 획득)
+    	// resValue "string", "gamepot_elsa_projectid", ""								 	// optional (ncp elsa)
+    	// resValue "string", "gamepot_region", "" 													// optional (region 설정)
+		
+	}
+
+	lintOptions {
+		abortOnError false
+	}
+
+	aaptOptions {
+		noCompress '.unity3d', '.ress', '.resource', '.obb'
+	}
+
+	**SIGN**
+
+	buildTypes {
+		debug {
+			jniDebuggable true
+			minifyEnabled false
+			**SIGNCONFIG**
+		}
+		release {
+			// Set minifyEnabled to true if you want to run ProGuard on your project
+			zipAlignEnabled true
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'
+			**SIGNCONFIG**
+		}
+	}
+	**PACKAGING_OPTIONS****SPLITS**
+}

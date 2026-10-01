@@ -1,0 +1,6 @@
+framework module GamePotOAuth {
+  umbrella header "GamePotOAuth.h"
+  export *
+
+  module * { export * }
+}
