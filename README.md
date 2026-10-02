@@ -9,6 +9,10 @@ Unity 6000.3.1f1에서 iOS 앱이 background/foreground로 전환될 때 Display
 
 [Unity 6000.3.1f1](https://unity.com/kr/releases/editor/whats-new/6000.3.1f1#notes)
 
+### 테스트 환경
+* Unity 6000.3.24f1
+* GAMEPOT_UNITY_SDK_v364_20260728
+
 ### 증상
 
 https://github.com/user-attachments/assets/2c289dd0-6738-4205-b7c7-8de4905738fb
