@@ -1,6 +1,4 @@
-# Unity 6.3
-
-## iOS DisplayLink foreground resume POC
+# Unity 6.3 iOS DisplayLink foreground resume POC
 
 Unity 6000.3.1f1에서 iOS 앱이 background/foreground로 전환될 때 DisplayLink를 pause/unpause하는 기능이 추가되었다. 이 변경 이후 background에서 foreground로 복귀할 때 Unity 스레드가 재개되지 않는 현상을 검증하기 위한 POC다.
 
@@ -9,11 +7,11 @@ Unity 6000.3.1f1에서 iOS 앱이 background/foreground로 전환될 때 Display
 
 [Unity 6000.3.1f1](https://unity.com/kr/releases/editor/whats-new/6000.3.1f1#notes)
 
-### 테스트 환경
+## 테스트 환경
 * Unity 6000.3.24f1
 * GAMEPOT_UNITY_SDK_v364_20260728
 
-### 증상
+## 증상
 
 https://github.com/user-attachments/assets/2c289dd0-6738-4205-b7c7-8de4905738fb
 
@@ -25,7 +23,7 @@ iOS 앱을 background로 보냈다가 foreground로 돌아오면 Unity 스레드
 expr -l objc++ -- (void)[GetAppController() unpauseDisplayLink]
 ```
 
-### 원인
+## 원인
 
 Unity 6000.3.1f1부터 앱 lifecycle에 맞춰 DisplayLink를 자동으로 pause/unpause한다.
 
@@ -43,7 +41,7 @@ sceneWillEnterForeground
 
 `GamePotAppDelegate`가 foreground lifecycle을 Unity의 `UnityAppController`까지 전달하지 않으면 background 진입 시 실행된 `pauseDisplayLink`만 남고 `unpauseDisplayLink`가 실행되지 않는다. 그 결과 iOS 앱 자체는 foreground 상태가 되어도 Unity 스레드는 계속 멈춰 있다.
 
-### 해결
+## 해결
 
 플러그인의 `applicationWillEnterForeground:` 구현에서 Unity app controller의 부모 lifecycle 메서드가 호출되도록 해야 한다.
 
@@ -53,7 +51,7 @@ sceneWillEnterForeground
 
 이 호출이 포함된 빌드에서는 Unity의 foreground 처리 과정에서 DisplayLink가 재개된다.
 
-### 해결 검증
+## 확인
 
 1. foreground lifecycle이 Unity app controller까지 전달되도록 빌드한다.
 2. 앱을 background로 전환한 뒤 다시 foreground로 전환한다.
